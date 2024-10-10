@@ -1,0 +1,26 @@
+long_term_forecast_ECL_0.125_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5(Trainable), lradj:type1)
+total_mse:0.8957199243631977, total_mae:0.8213443963886788, imp_mse:0.13049276429951562, imp_mae:0.25799147470027023, ds_mse:0.8304735422134399, ds_mae:0.6923486590385437
+
+long_term_forecast_ECL_0.25_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5(Trainable), lradj:type1)
+total_mse:0.7641400183603075, total_mae:0.7580539152396392, imp_mse:0.14137198236880835, imp_mae:0.26885333962692237, ds_mse:0.6934540271759033, ds_mae:0.623627245426178
+
+[想将lambda初始化为0.5来尝试跑可学习lambda的代码，但是误以为跑的是独立训练所以keyboard中断了]
+
+[restart]long_term_forecast_ECL_0.125_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5(Trainable), lradj:type1)
+total_mse:0.8957199243631977, total_mae:0.8213443963886788, imp_mse:0.13049276429951562, imp_mae:0.25799147470027023, ds_mse:0.8304735422134399, ds_mae:0.6923486590385437
+
+long_term_forecast_ECL_0.25_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5(Trainable), lradj:type1)
+total_mse:0.7641400183603075, total_mae:0.7580539152396392, imp_mse:0.14137198236880835, imp_mae:0.26885333962692237, ds_mse:0.6934540271759033, ds_mae:0.623627245426178
+
+long_term_forecast_ECL_0.375_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5(Trainable), lradj:type1)
+total_mse:0.6964325301048363, total_mae:0.7251178447781883, imp_mse:0.14500498616639873, imp_mae:0.27219351617075643, ds_mse:0.623930037021637, ds_mae:0.5890210866928101
+
+long_term_forecast_ECL_0.5_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5(Trainable), lradj:type1)
+total_mse:0.6570837689066156, total_mae:0.7066361500841121, imp_mse:0.14591244709973009, imp_mae:0.27353076021308487, ds_mse:0.5841275453567505, ds_mae:0.5698707699775696
+

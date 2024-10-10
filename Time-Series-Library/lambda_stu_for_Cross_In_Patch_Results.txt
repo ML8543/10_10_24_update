@@ -1,0 +1,270 @@
+[Crossformer_ETTh1_lambda_stu_clamp]
+
+
+long_term_forecast_Crossformer_ETTh1_0.125_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0(Trainable), lradj:type1)
+total_mse:0.4013531506061554, total_mae:0.4249696433544159, imp_mse:0.14414430850709992, imp_mae:0.25339948385953903, ds_mse:0.4013531506061554, ds_mae:0.4249696433544159
+
+long_term_forecast_Crossformer_ETTh1_0.25_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0(Trainable), lradj:type1)
+total_mse:0.414884477853775, total_mae:0.43638312816619873, imp_mse:0.16994954893986383, imp_mae:0.2778650986394663, ds_mse:0.414884477853775, ds_mae:0.43638312816619873
+
+long_term_forecast_Crossformer_ETTh1_0.375_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.0(Trainable), lradj:type1)
+total_mse:1.095526099205017, total_mae:0.8038015365600586, imp_mse:53145.26253816451, imp_mae:189.38426028723003, ds_mse:1.095526099205017, ds_mae:0.8038015365600586
+
+long_term_forecast_Crossformer_ETTh1_0.5_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0(Trainable), lradj:type1)
+total_mse:0.43052420020103455, total_mae:0.4448915123939514, imp_mse:0.21568769925199022, imp_mae:0.31098257544739494, ds_mse:0.43052420020103455, ds_mae:0.4448915123939514
+
+
+[Crossformer_ETTh1_lambda_stu_ReLu]
+
+long_term_forecast_Crossformer_ETTh1_0.125_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.8754315376281738(Trainable), lradj:type1)
+total_mse:0.4013531506061554, total_mae:0.4249696433544159, imp_mse:0.14414430850709992, imp_mae:0.25339948385953903, ds_mse:0.4013531506061554, ds_mae:0.4249696433544159
+
+long_term_forecast_Crossformer_ETTh1_0.25_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.7428765296936035(Trainable), lradj:type1)
+total_mse:0.414884477853775, total_mae:0.43638312816619873, imp_mse:0.16994954893986383, imp_mae:0.2778650986394663, ds_mse:0.414884477853775, ds_mae:0.43638312816619873
+
+long_term_forecast_Crossformer_ETTh1_0.375_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5987037420272827(Trainable), lradj:type1)
+total_mse:0.4229584038257599, total_mae:0.4407554566860199, imp_mse:0.401448397886479, imp_mae:0.4338398590341382, ds_mse:0.4229584038257599, ds_mae:0.4407554566860199
+
+long_term_forecast_Crossformer_ETTh1_0.5_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.702367901802063(Trainable), lradj:type1)
+total_mse:0.43052420020103455, total_mae:0.4448915123939514, imp_mse:0.21568769925199022, imp_mae:0.31098257544739494, ds_mse:0.43052420020103455, ds_mae:0.4448915123939514
+
+
+[Crossformer_ECL_lambda_stu_clamp]
+
+
+long_term_forecast_Crossformer_ECL_0.125_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.9084763526916504(Trainable), lradj:type1)
+total_mse:0.15500544011592865, total_mae:0.2590734660625458, imp_mse:0.05564667607270042, imp_mae:0.1643455679649892, ds_mse:0.15500544011592865, ds_mae:0.2590734660625458
+
+long_term_forecast_Crossformer_ECL_0.25_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.7492246031761169(Trainable), lradj:type1)
+total_mse:0.15587395429611206, total_mae:0.26022520661354065, imp_mse:0.06915721650125448, imp_mae:0.18596399015521412, ds_mse:0.15587395429611206, ds_mae:0.26022520661354065
+
+long_term_forecast_Crossformer_ECL_0.375_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5410212278366089(Trainable), lradj:type1)
+total_mse:0.1612185388803482, total_mae:0.2658209502696991, imp_mse:0.08325317532101774, imp_mae:0.2054846306209979, ds_mse:0.1612185388803482, ds_mae:0.2658209502696991
+
+long_term_forecast_Crossformer_ECL_0.5_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.0(Trainable), lradj:type1)
+total_mse:0.9438437223434448, total_mae:0.7826897501945496, imp_mse:477543397.66459626, imp_mae:20835.91468119177, ds_mse:0.9438437223434448, ds_mae:0.7826897501945496
+
+
+
+[Crossformer_ECL_lambda_stu_ReLu]
+
+
+
+
+long_term_forecast_Crossformer_ECL_0.125_96_96_J_lambda_stu_ReLu_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.9084763526916504(Trainable), lradj:type1)
+total_mse:0.15500544011592865, total_mae:0.2590734660625458, imp_mse:0.05564667607270042, imp_mae:0.1643455679649892, ds_mse:0.15500544011592865, ds_mae:0.2590734660625458
+
+long_term_forecast_Crossformer_ECL_0.25_96_96_J_lambda_stu_ReLu_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.7492246031761169(Trainable), lradj:type1)
+total_mse:0.15587395429611206, total_mae:0.26022520661354065, imp_mse:0.06915721650125448, imp_mae:0.18596399015521412, ds_mse:0.15587395429611206, ds_mae:0.26022520661354065
+
+long_term_forecast_Crossformer_ECL_0.375_96_96_J_lambda_stu_ReLu_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5410212278366089(Trainable), lradj:type1)
+total_mse:0.1612185388803482, total_mae:0.2658209502696991, imp_mse:0.08325317532101774, imp_mae:0.2054846306209979, ds_mse:0.1612185388803482, ds_mae:0.2658209502696991
+
+long_term_forecast_Crossformer_ECL_0.5_96_96_J_lambda_stu_ReLu_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.26264894008636475(Trainable), lradj:type1)
+total_mse:0.1619773656129837, total_mae:0.2694462537765503, imp_mse:0.09723966999083572, imp_mae:0.2231574451886349, ds_mse:0.1619773656129837, ds_mae:0.2694462537765503
+
+【上面是没有修改clamp到ifelse两处并且没有把print的total_loss改过来下面修改了这两处】
+[修改完两处后Crossformer_ETTh1_lambda_stu_clamp]
+
+long_term_forecast_Crossformer_ETTh1_0.125_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0001182556152344(Trainable), lradj:type1)
+total_mse:0.14411389211723377, total_mae:0.2533791947247721, imp_mse:0.14414430850709992, imp_mae:0.25339948385953903, ds_mse:0.4013531506061554, ds_mae:0.4249696433544159
+
+long_term_forecast_Crossformer_ETTh1_0.25_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0001206398010254(Trainable), lradj:type1)
+total_mse:0.1699200000387755, total_mae:0.27784597505592523, imp_mse:0.16994954893986383, imp_mae:0.2778650986394663, ds_mse:0.414884477853775, ds_mae:0.43638312816619873
+
+long_term_forecast_Crossformer_ETTh1_0.375_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5987037420272827(Trainable), lradj:type1)
+total_mse:0.41008028277888336, total_mae:0.43661506249348325, imp_mse:0.401448397886479, imp_mae:0.4338398590341382, ds_mse:0.4229584038257599, ds_mae:0.4407554566860199
+
+long_term_forecast_Crossformer_ETTh1_0.5_96_96_J_lambda_stu_clamp_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0001198053359985(Trainable), lradj:type1)
+total_mse:0.21566196069280927, total_mae:0.31096653244221084, imp_mse:0.21568769925199022, imp_mae:0.31098257544739494, ds_mse:0.43052420020103455, ds_mae:0.4448915123939514
+
+[修改完两处后Crossformer_ETTh1_lambda_stu_ReLu]
+
+
+
+
+long_term_forecast_Crossformer_ETTh1_0.125_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.8754315376281738(Trainable), lradj:type1)
+total_mse:-0.08102442362323842, total_mae:0.10320155532182795, imp_mse:0.14414430850709992, imp_mae:0.25339948385953903, ds_mse:0.4013531506061554, ds_mae:0.4249696433544159
+
+long_term_forecast_Crossformer_ETTh1_0.25_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.7428765296936035(Trainable), lradj:type1)
+total_mse:-0.012006861052451967, total_mae:0.1601057749707791, imp_mse:0.16994954893986383, imp_mae:0.2778650986394663, ds_mse:0.414884477853775, ds_mae:0.43638312816619873
+
+long_term_forecast_Crossformer_ETTh1_0.375_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5987037420272827(Trainable), lradj:type1)
+total_mse:0.41008028277888336, total_mae:0.43661506249348325, imp_mse:0.401448397886479, imp_mae:0.4338398590341382, ds_mse:0.4229584038257599, ds_mae:0.4407554566860199
+
+long_term_forecast_Crossformer_ETTh1_0.5_96_96_J_lambda_stu_ReLu_Crossformer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.702367901802063(Trainable), lradj:type1)
+total_mse:0.06479343684991301, total_mae:0.21692923637169736, imp_mse:0.21568769925199022, imp_mae:0.31098257544739494, ds_mse:0.43052420020103455, ds_mae:0.4448915123939514
+
+【经过crossformer的ETTh1数据集的实验，我们发现ReLu的区别仅在total_loss上，预测和填补损失完全相同，故只重跑crossformer的ECL数据集的clamp不重跑ReLu】
+[修改完两处后Informer_ECL_lambda_stu_clamp]
+
+
+long_term_forecast_Informer_ECL_0.125_96_96_J_lambda_stu_clamp_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0000158548355103(Trainable), lradj:type1)
+total_mse:0.09415943540402631, total_mae:0.21363367448474155, imp_mse:0.09416423416378335, imp_mae:0.2136376053557633, ds_mse:0.39683276414871216, ds_mae:0.4615664482116699
+
+
+long_term_forecast_Informer_ECL_0.25_96_96_J_lambda_stu_clamp_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0001264810562134(Trainable), lradj:type1)
+total_mse:0.11905463242060128, total_mae:0.24140155079534176, imp_mse:0.1190997874884872, imp_mae:0.24143530423781887, ds_mse:0.4761103093624115, ds_mae:0.5083009004592896
+
+
+long_term_forecast_Informer_ECL_0.375_96_96_J_lambda_stu_clamp_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0001273155212402(Trainable), lradj:type1)
+total_mse:0.12454172463747287, total_mae:0.2477118577306097, imp_mse:0.1245839735088141, imp_mae:0.2477435941188972, ds_mse:0.45642781257629395, ds_mae:0.49701711535453796
+
+long_term_forecast_Informer_ECL_0.5_96_96_J_lambda_stu_clamp_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.0001264810562134(Trainable), lradj:type1)
+total_mse:0.12792903338707298, total_mae:0.2510755753694191, imp_mse:0.1279717357771367, imp_mae:0.251107499142241, ds_mse:0.46559059619903564, ds_mae:0.503507137298584
+
+[修改完两处后Informer_ECL_lambda_stu_ReLu]
+
+
+long_term_forecast_Informer_ECL_0.125_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:4.929681301116943(Trainable), lradj:type1)
+total_mse:-1.1006794344056785, total_mae:-0.7455616118709836, imp_mse:0.10537477707640724, imp_mae:0.22467296302133466, ds_mse:0.41228368878364563, ds_mae:0.47157201170921326
+
+
+long_term_forecast_Informer_ECL_0.25_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:5.152951717376709(Trainable), lradj:type1)
+total_mse:-1.363547672449382, total_mae:-0.8668446318988972, imp_mse:0.1190997874884872, imp_mae:0.24143530423781887, ds_mse:0.4761103093624115, ds_mae:0.5083009004592896
+
+
+long_term_forecast_Informer_ECL_0.375_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:5.287198543548584(Trainable), lradj:type1)
+total_mse:-1.2980964500268561, total_mae:-0.8209414830677688, imp_mse:0.1245839735088141, imp_mae:0.2477435941188972, ds_mse:0.45642781257629395, ds_mae:0.49701711535453796
+
+
+long_term_forecast_Informer_ECL_0.5_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:5.597069263458252(Trainable), lradj:type1)
+total_mse:-1.4240855502321765, total_mae:-0.9091911195342679, imp_mse:0.1279717357771367, imp_mae:0.251107499142241, ds_mse:0.46559059619903564, ds_mae:0.503507137298584
+
+
+
+
+
+[修改完两处后Crossformer_ECL_lambda_stu_clamp]
+
+
+long_term_forecast_Crossformer_ECL_0.125_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.9084763526916504(Trainable), lradj:type1)
+total_mse:0.06474035254998636, total_mae:0.17301541070073126, imp_mse:0.05564667607270042, imp_mae:0.1643455679649892, ds_mse:0.15500544011592865, ds_mae:0.2590734660625458
+
+long_term_forecast_Crossformer_ECL_0.25_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.7492246031761169(Trainable), lradj:type1)
+total_mse:0.09090364083303251, total_mae:0.20458687618117521, imp_mse:0.06915721650125448, imp_mae:0.18596399015521412, ds_mse:0.15587395429611206, ds_mae:0.26022520661354065
+
+long_term_forecast_Crossformer_ECL_0.375_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5410212278366089(Trainable), lradj:type1)
+total_mse:0.11903762215875163, total_mae:0.23317772053021668, imp_mse:0.08325317532101774, imp_mae:0.2054846306209979, ds_mse:0.1612185388803482, ds_mae:0.2658209502696991
+
+long_term_forecast_Crossformer_ECL_0.5_96_96_J_lambda_stu_clamp_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_1_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.26264894008636475(Trainable), lradj:type1)
+total_mse:0.14497407847419283, total_mae:0.2572885472630737, imp_mse:0.09723966999083572, imp_mae:0.2231574451886349, ds_mse:0.1619773656129837, ds_mae:0.2694462537765503
+
+【注意到Informer的复现结果不好，我们给他加上可逆规划，下面是Informer和PatchTST的ETTh1和ECL的可学习lambda结果，Crossformer的在上面】
+
+【Informer_ECL_lambda_stu_ReLu】
+
+
+
+long_term_forecast_Informer_ECL_0.125_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-1.4636148263952493e-14(Trainable), lradj:type1)
+total_mse:0.2313388139008632, total_mae:0.33803856372830926, imp_mse:5.995643689765693, imp_mae:1.9266941458542155, ds_mse:0.23133881390094757, ds_mae:0.3380385637283325
+
+long_term_forecast_Informer_ECL_0.25_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-1.4439163975804928e-14(Trainable), lradj:type1)
+total_mse:0.23294673860064577, total_mae:0.3407097756862412, imp_mse:6.1290208286380174, imp_mae:1.9237942173614264, ds_mse:0.2329467386007309, ds_mae:0.34070977568626404
+
+long_term_forecast_Informer_ECL_0.375_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-1.4291751443862473e-14(Trainable), lradj:type1)
+total_mse:0.2377625107764711, total_mae:0.34384235739706354, imp_mse:3.6442251323913197, imp_mae:1.4578198150077961, ds_mse:0.23776251077651978, ds_mae:0.34384235739707947
+
+long_term_forecast_Informer_ECL_0.5_96_96_J_lambda_stu_ReLu_Informer_custom_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-3.013529692452721e-08(Trainable), lradj:type1)
+total_mse:0.24011056292730967, total_mae:0.34939878653743606, imp_mse:4.140308527472596, imp_mae:1.512649178875159, ds_mse:0.24011068046092987, ds_mae:0.34939882159233093
+
+【PatchTST_ECL_lambda_stu_ReLu】
+
+long_term_forecast_PatchTST_ECL_96_96_0.125_stu_lambda_J_ReLu_PatchTST_custom_ftM_sl96_ll48_pl96_dm128_nh16_el3_dl1_df256_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-3.4903197953378706e-12(Trainable), lradj:type1)
+total_mse:0.1907693445674563, total_mae:0.2848803997037679, imp_mse:0.41890356347242497, imp_mae:0.34551189673243105, ds_mse:0.19076934456825256, ds_mae:0.2848803997039795
+
+long_term_forecast_PatchTST_ECL_96_96_0.25_stu_lambda_J_ReLu_PatchTST_custom_ftM_sl96_ll48_pl96_dm128_nh16_el3_dl1_df256_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-3.4145050068629113e-12(Trainable), lradj:type1)
+total_mse:0.19541756808733732, total_mae:0.29001787304868054, imp_mse:0.2658596291952992, imp_mae:0.3198422262017031, ds_mse:0.19541756808757782, ds_mae:0.29001787304878235
+
+long_term_forecast_PatchTST_ECL_96_96_0.375_stu_lambda_J_ReLu_PatchTST_custom_ftM_sl96_ll48_pl96_dm128_nh16_el3_dl1_df256_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-2.5634200317981026e-10(Trainable), lradj:type1)
+total_mse:0.20166115462051049, total_mae:0.2968406975187454, imp_mse:0.2300978295088555, imp_mae:0.3287760331208662, ds_mse:0.2016611546278, ds_mae:0.29684069752693176
+
+long_term_forecast_PatchTST_ECL_96_96_0.5_stu_lambda_J_ReLu_PatchTST_custom_ftM_sl96_ll48_pl96_dm128_nh16_el3_dl1_df256_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-2.1327499488688062e-10(Trainable), lradj:type1)
+total_mse:0.2110902368965931, total_mae:0.3061903118977071, imp_mse:0.23755298342023576, imp_mae:0.35783605666264245, ds_mse:0.21109023690223694, ds_mae:0.3061903119087219
+
+
+【Informer_ETTh1_lambda_stu_ReLu】
+
+
+long_term_forecast_Informer_ETTh1_0.125_96_96_J_lambda_stu_ReLu_Informer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:1.935027837753296(Trainable), lradj:type1)
+total_mse:-0.4961059048548311, total_mae:-0.1300761192408506, imp_mse:0.09779537201527207, imp_mae:0.22162592145560803, ds_mse:0.7329649925231934, ds_mae:0.597766637802124
+
+long_term_forecast_Informer_ETTh1_0.25_96_96_J_lambda_stu_ReLu_Informer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:2.0318033695220947(Trainable), lradj:type1)
+total_mse:-0.5330072142266419, total_mae:-0.13583752438071084, imp_mse:0.10991842096307497, imp_mae:0.23555227240611767, ds_mse:0.7330271005630493, ds_mae:0.5954946875572205
+
+long_term_forecast_Informer_ETTh1_0.375_96_96_J_lambda_stu_ReLu_Informer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-1.6275576797397662e-07(Trainable), lradj:type1)
+total_mse:0.6872061516000032, total_mae:0.5866419191863484, imp_mse:0.6718534158392885, imp_mae:0.5160183408137026, ds_mse:0.6872061491012573, ds_mae:0.5866419076919556
+
+long_term_forecast_Informer_ETTh1_0.5_96_96_J_lambda_stu_ReLu_Informer_ETTh1_ftM_sl96_ll48_pl96_dm512_nh8_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:-1.4207287012428169e-14(Trainable), lradj:type1)
+total_mse:0.8522579073901784, total_mae:0.6221326589583911, imp_mse:30.143162264221015, imp_mae:3.7171255350112915, ds_mse:0.8522579073905945, ds_mae:0.6221326589584351
+
+
+
+【PatchTST_ETTh1_lambda_stu_ReLu】
+
+
+long_term_forecast_patchTST_ETTh1_96_96_0.125_J_lambda_stu_ReLu_PatchTST_ETTh1_ftM_sl96_ll48_pl96_dm512_nh2_el1_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.18910977244377136(Trainable), lradj:type1)
+total_mse:0.3323155246271506, total_mae:0.36981648976500864, imp_mse:0.13086504743959027, imp_mae:0.24316525416470122, ds_mse:0.37929630279541016, ds_mae:0.39935314655303955
+
+long_term_forecast_patchTST_ETTh1_96_96_0.25_J_lambda_stu_ReLu_PatchTST_ETTh1_ftM_sl96_ll48_pl96_dm512_nh2_el1_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.43606331944465637(Trainable), lradj:type1)
+total_mse:0.27375123407907753, total_mae:0.33156853745561654, imp_mse:0.13124580054019375, imp_mae:0.24025468562526264, ds_mse:0.3839433789253235, ds_mae:0.4021768569946289
+
+long_term_forecast_patchTST_ETTh1_96_96_0.375_J_lambda_stu_ReLu_PatchTST_ETTh1_ftM_sl96_ll48_pl96_dm512_nh2_el1_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5420897603034973(Trainable), lradj:type1)
+total_mse:0.25892686588168556, total_mae:0.3236241556186018, imp_mse:0.14864719920288558, imp_mae:0.2547616461056402, ds_mse:0.38947969675064087, ds_mae:0.40514594316482544
+
+long_term_forecast_patchTST_ETTh1_96_96_0.5_J_lambda_stu_ReLu_PatchTST_ETTh1_ftM_sl96_ll48_pl96_dm512_nh2_el1_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.4309343993663788(Trainable), lradj:type1)
+total_mse:0.3071727216962392, total_mae:0.35558960931270217, imp_mse:0.18414259239517408, imp_mae:0.2825040503822524, ds_mse:0.4003393352031708, ds_mae:0.4109348654747009
+
+

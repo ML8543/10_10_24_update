@@ -1,0 +1,13 @@
+long_term_forecast_ECL_0.125_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+total_mse:0.8956488622873096, total_mae:0.9131407787710983, imp_mse:0.11321159736802859, imp_mae:0.23594809078281712, ds_mse:0.782437264919281, ds_mae:0.6771926879882812
+
+long_term_forecast_ECL_0.25_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+total_mse:0.8493276772476872, total_mae:0.89757998269167, imp_mse:0.13358902311102944, imp_mae:0.2591748384770399, ds_mse:0.7157386541366577, ds_mae:0.6384051442146301
+
+long_term_forecast_ECL_0.375_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+total_mse:0.8979268435689604, total_mae:0.9213540906213826, imp_mse:0.1395978097173368, imp_mae:0.26533762161961255, ds_mse:0.7583290338516235, ds_mae:0.65601646900177
+
+long_term_forecast_ECL_0.5_96_96_J_Informer_custom_ftM_sl96_ll48_pl96_dm32_nh8_el2_dl1_df32_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+total_mse:0.8335760516455826, total_mae:0.8946005158265184, imp_mse:0.14940509026557763, imp_mae:0.2756890110810351, ds_mse:0.6841709613800049, ds_mae:0.6189115047454834
+
+[lambda = 1]
