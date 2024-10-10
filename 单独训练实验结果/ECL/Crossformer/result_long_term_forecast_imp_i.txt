@@ -1,0 +1,12 @@
+long_term_forecast_Crossformer_ECL_0.125_96_96_I_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.15018747746944427, mae:0.2530123293399811, dtw:-999
+
+long_term_forecast_Crossformer_ECL_0.25_96_96_I_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.15361304581165314, mae:0.25595641136169434, dtw:-999
+
+long_term_forecast_Crossformer_ECL_0.375_96_96_I_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.15650616586208344, mae:0.26037871837615967, dtw:-999
+
+long_term_forecast_Crossformer_ECL_0.5_96_96_I_Crossformer_custom_ftM_sl96_ll48_pl96_dm256_nh8_el2_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.15926244854927063, mae:0.2651585042476654, dtw:-999
+

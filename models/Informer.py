@@ -17,6 +17,8 @@ class Model(nn.Module):
         self.task_name = configs.task_name
         self.pred_len = configs.pred_len
         self.label_len = configs.label_len
+        self.seq_len = configs.seq_len
+
 
         # Embedding
         self.enc_embedding = DataEmbedding(configs.enc_in, configs.d_model, configs.embed, configs.freq,
@@ -74,12 +76,21 @@ class Model(nn.Module):
             self.dropout = nn.Dropout(configs.dropout)
             self.projection = nn.Linear(configs.d_model * configs.seq_len, configs.num_class)
 
+    #####加上可逆规划的Informer长时预测
     def long_forecast(self, x_enc, x_mark_enc, x_dec, x_mark_dec):
+        # Normalization
+        mean_enc = x_enc.mean(1, keepdim=True).detach()  # B x 1 x E
+        x_enc = x_enc - mean_enc
+        std_enc = torch.sqrt(torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5).detach()  # B x 1 x E
+        x_enc = x_enc / std_enc
+        
         enc_out = self.enc_embedding(x_enc, x_mark_enc)
         dec_out = self.dec_embedding(x_dec, x_mark_dec)
         enc_out, attns = self.encoder(enc_out, attn_mask=None)
 
         dec_out = self.decoder(dec_out, enc_out, x_mask=None, cross_mask=None)
+        
+        dec_out = dec_out * std_enc + mean_enc
 
         return dec_out  # [B, L, D]
     
@@ -99,13 +110,36 @@ class Model(nn.Module):
         dec_out = dec_out * std_enc + mean_enc
         return dec_out  # [B, L, D]
 
-    def imputation(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask):
+
+    
+    def imputation(self, x_enc, x_mark_enc, x_dec, x_mark_dec, mask):    
         # enc
         enc_out = self.enc_embedding(x_enc, x_mark_enc)
         enc_out, attns = self.encoder(enc_out, attn_mask=None)
+        
+        # Normalization from Non-stationary Transformer
+        means = torch.sum(x_enc, dim=1) / torch.sum(mask == 1, dim=1)
+        means = means.unsqueeze(1).detach()
+        x_enc = x_enc - means
+        x_enc = x_enc.masked_fill(mask == 0, 0)
+        stdev = torch.sqrt(torch.sum(x_enc * x_enc, dim=1) /
+                           torch.sum(mask == 1, dim=1) + 1e-5)
+        stdev = stdev.unsqueeze(1).detach()
+        x_enc /= stdev
+        
         # final
         dec_out = self.projection(enc_out)
+        
+        # De-Normalization from Non-stationary Transformer
+        dec_out = dec_out * \
+                  (stdev[:, 0, :].unsqueeze(1).repeat(
+                      1, self.pred_len + self.seq_len, 1))
+        dec_out = dec_out + \
+                  (means[:, 0, :].unsqueeze(1).repeat(
+                      1, self.pred_len + self.seq_len, 1))
+    
         return dec_out
+
 
     def anomaly_detection(self, x_enc):
         # enc

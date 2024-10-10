@@ -17,11 +17,19 @@ class Exp_Classification(Exp_Basic):
     def __init__(self, args):
         super(Exp_Classification, self).__init__(args)
 
+    #######################################################
     def _build_model(self):
         # model input depends on data
+
         train_data, train_loader = self._get_data(flag='TRAIN')
         test_data, test_loader = self._get_data(flag='TEST')
+
+        #####################################################
+        # edit begin
         self.args.seq_len = max(train_data.max_seq_len, test_data.max_seq_len)
+        # self.args.seq_len = 256
+        # edit end
+
         self.args.pred_len = 0
         self.args.enc_in = train_data.feature_df.shape[1]
         self.args.num_class = len(train_data.class_names)
@@ -76,6 +84,7 @@ class Exp_Classification(Exp_Basic):
         self.model.train()
         return total_loss, accuracy
 
+    ##############################################
     def train(self, setting):
         train_data, train_loader = self._get_data(flag='TRAIN')
         vali_data, vali_loader = self._get_data(flag='TEST')
@@ -99,7 +108,6 @@ class Exp_Classification(Exp_Basic):
 
             self.model.train()
             epoch_time = time.time()
-
             for i, (batch_x, label, padding_mask) in enumerate(train_loader):
                 iter_count += 1
                 model_optim.zero_grad()
@@ -131,7 +139,7 @@ class Exp_Classification(Exp_Basic):
 
             print(
                 "Epoch: {0}, Steps: {1} | Train Loss: {2:.3f} Vali Loss: {3:.3f} Vali Acc: {4:.3f} Test Loss: {5:.3f} Test Acc: {6:.3f}"
-                .format(epoch + 1, train_steps, train_loss, vali_loss, val_accuracy, test_loss, test_accuracy))
+                    .format(epoch + 1, train_steps, train_loss, vali_loss, val_accuracy, test_loss, test_accuracy))
             early_stopping(-val_accuracy, self.model, path)
             if early_stopping.early_stop:
                 print("Early stopping")
@@ -144,8 +152,9 @@ class Exp_Classification(Exp_Basic):
 
         return self.model
 
+    ###################################################
     def test(self, setting, test=0):
-        test_data, test_loader = self._get_data(flag='TEST')
+        test_data, test_loader = self._get_data(flag='test')
         if test:
             print('loading model')
             self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
@@ -183,8 +192,8 @@ class Exp_Classification(Exp_Basic):
             os.makedirs(folder_path)
 
         print('accuracy:{}'.format(accuracy))
-        file_name='result_classification.txt'
-        f = open(os.path.join(folder_path,file_name), 'a')
+        file_name = 'result_classification.txt'
+        f = open(os.path.join(folder_path, file_name), 'a')
         f.write(setting + "  \n")
         f.write('accuracy:{}'.format(accuracy))
         f.write('\n')

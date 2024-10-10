@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=7
+export CUDA_VISIBLE_DEVICES=0
 
 model_name=Crossformer
 
@@ -20,10 +20,12 @@ python -u run.py \
   --enc_in 321 \
   --dec_in 321 \
   --c_out 321 \
+  ####3
   --d_model 256 \
   --d_ff 512 \
   --top_k 5 \
   --des 'Exp' \
+  ####
   --batch_size 16 \
   --itr 1
 

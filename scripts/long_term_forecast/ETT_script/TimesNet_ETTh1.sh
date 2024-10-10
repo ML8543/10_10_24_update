@@ -7,11 +7,14 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/ETT-small/ \
   --data_path ETTh1.csv \
+  ##比填补少个mask_rate
+  ##model_id略不同
   --model_id ETTh1_96_96 \
   --model $model_name \
   --data ETTh1 \
   --features M \
   --seq_len 96 \
+  ###label_len和pred_len两个模型值不同
   --label_len 48 \
   --pred_len 96 \
   --e_layers 2 \
@@ -20,11 +23,14 @@ python -u run.py \
   --enc_in 7 \
   --dec_in 7 \
   --c_out 7 \
+  ##少个batch_size
   --d_model 16 \
   --d_ff 32 \
   --des 'Exp' \
   --itr 1 \
+  ##top_k两个模型赋值不同
   --top_k 5 
+  ##少个learning_rate
 
 
 python -u run.py \

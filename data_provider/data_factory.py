@@ -15,7 +15,8 @@ data_dict = {
     'SMAP': SMAPSegLoader,
     'SMD': SMDSegLoader,
     'SWAT': SWATSegLoader,
-    'UEA': UEAloader
+    'UEA': UEAloader,
+
 }
 
 
@@ -31,7 +32,7 @@ def data_provider(args, flag):
     if args.task_name == 'anomaly_detection':
         drop_last = False
         data_set = Data(
-            args = args,
+            args=args,
             root_path=args.root_path,
             win_size=args.seq_len,
             flag=flag,
@@ -47,7 +48,7 @@ def data_provider(args, flag):
     elif args.task_name == 'classification':
         drop_last = False
         data_set = Data(
-            args = args,
+            args=args,
             root_path=args.root_path,
             flag=flag,
         )
@@ -65,7 +66,7 @@ def data_provider(args, flag):
         if args.data == 'm4':
             drop_last = False
         data_set = Data(
-            args = args,
+            args=args,
             root_path=args.root_path,
             data_path=args.data_path,
             flag=flag,

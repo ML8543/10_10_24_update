@@ -21,6 +21,7 @@ python -u run.py \
   --dec_in 7 \
   --c_out 7 \
   --des 'Exp' \
+  #比Informer多一个n_heads参数
   --n_heads 2 \
   --itr 1
 

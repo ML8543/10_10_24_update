@@ -197,11 +197,11 @@ class Exp_Imputation(Exp_Basic):
                 trues.append(true)
                 masks.append(mask.detach().cpu())
 
-                if i % 20 == 0:
-                    filled = true[0, :, -1].copy()
-                    filled = filled * mask[0, :, -1].detach().cpu().numpy() + \
-                             pred[0, :, -1] * (1 - mask[0, :, -1].detach().cpu().numpy())
-                    visual(true[0, :, -1], filled, os.path.join(folder_path, str(i) + '.pdf'))
+                #if i % 20 == 0:
+                #    filled = true[0, :, -1].copy()
+                #    filled = filled * mask[0, :, -1].detach().cpu().numpy() + \
+                #             pred[0, :, -1] * (1 - mask[0, :, -1].detach().cpu().numpy())
+                #    visual(true[0, :, -1], filled, os.path.join(folder_path, str(i) + '.pdf'))
 
         preds = np.concatenate(preds, 0)
         trues = np.concatenate(trues, 0)
@@ -222,7 +222,7 @@ class Exp_Imputation(Exp_Basic):
         f.write('\n')
         f.close()
 
-        np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
-        np.save(folder_path + 'pred.npy', preds)
-        np.save(folder_path + 'true.npy', trues)
+        #np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
+        #np.save(folder_path + 'pred.npy', preds)
+        #np.save(folder_path + 'true.npy', trues)
         return
