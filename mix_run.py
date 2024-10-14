@@ -1,6 +1,7 @@
 import argparse
 import torch
 from exp.I_LTF import Exp_Long_Term_Forecast_Imp_I
+from exp.statistical_experiment import Statistical_Experiment
 from exp.J_LTF_lambda_stu import Exp_Long_Term_Forecast_Imp_J_Lambda_Stu
 from exp.J_LTF_lambda_stu_clamp01 import Exp_Long_Term_Forecast_Imp_J_Lambda_Stu_clamp
 from exp.J_LTF_lambda_stu_ReLu import Exp_Long_Term_Forecast_Imp_J_Lambda_Stu_ReLu
@@ -32,6 +33,9 @@ if __name__ == '__main__':
     #比较线性插值、最近邻插值和复现好的填补模型的填补效果
     parser.add_argument('--linear_nearest_only', type=int, default=0, help='if only use linear or nearest only, options:[0(no),1(yes)]')
     
+    #不同间隔的模型插补效果的统计实验
+    parser.add_argument('--do_statistic_exp', type=int, default=0, help='if do statistical experiment, options:[0(no),1(yes)]')
+
     # 不填补直接下游
     parser.add_argument('--interpolate',type=str,default='no',help='interpolate methods after mask, options:[no,nearest,linear]')
 
@@ -169,8 +173,10 @@ if __name__ == '__main__':
     print_args(args)
 
     if args.task_name == 'long_term_forecast':
-        if  args.train_mode == 0:
+        if  (args.train_mode == 0) and (args.do_statistic_exp == 0):
             Exp = Exp_Long_Term_Forecast_Imp_I
+        elif (args.train_mode == 0) and (args.do_statistic_exp == 1):
+            Exp = Statistical_Experiment
         elif (args.train_mode == 1) and (args.requires_grad == False):
             Exp = Exp_Long_Term_Forecast_Imp_J
         elif (args.train_mode == 1) and (args.requires_grad == True):
