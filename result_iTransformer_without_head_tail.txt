@@ -1,0 +1,4 @@
+long_term_forecast_iTransformer_ETTm1_0.125_96_96_J_lambda_stu_ReLu_without_head_tail_iTransformer_without_head_tail_ETTm1_ftM_sl96_ll48_pl96_dm128_nh8_el2_dl1_df128_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.765272319316864(Trainable), lradj:type1)
+total_mse:0.1137910637352773, total_mae:0.19427398245128003, imp_mse:0.045333094808797374, imp_mae:0.1393928913196095, ds_mse:0.33698156476020813, ds_mae:0.373200386762619
+

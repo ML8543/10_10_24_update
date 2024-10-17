@@ -5,6 +5,7 @@ from exp.statistical_experiment import Statistical_Experiment
 from exp.J_LTF_lambda_stu import Exp_Long_Term_Forecast_Imp_J_Lambda_Stu
 from exp.J_LTF_lambda_stu_clamp01 import Exp_Long_Term_Forecast_Imp_J_Lambda_Stu_clamp
 from exp.J_LTF_lambda_stu_ReLu import Exp_Long_Term_Forecast_Imp_J_Lambda_Stu_ReLu
+from exp.ReLu_without_head_tail_lambda_stu import Exp_ReLu_Without_Head_Tail_Lambda_Stu
 from exp.J_LTF import Exp_Long_Term_Forecast_Imp_J
 from exp.R_LTF import Exp_Long_Term_Forecast_Imp_R
 from exp.linear_nearest_imputate_only import Exp_Long_Term_Forecast_Imp_R_Linear_Nearest_Only
@@ -30,6 +31,10 @@ if __name__ == '__main__':
     parser.add_argument('--train_mode', type=int, required=True, default=0, 
                         help='train mode, options:[0(Individual),1(Joint),2(NO imputaion model)]')
     
+
+    #使用“掐头去尾”的模型来做联合训练，掐去预测模型的线性映射嵌入头，去掉填补模型的线性映射尾
+    parser.add_argument('--without_head_tail', type=int, default=0, help='if we use imp_model without tail and ds_model without head, options:[0(no),1(yes)]')
+
     #比较线性插值、最近邻插值和复现好的填补模型的填补效果
     parser.add_argument('--linear_nearest_only', type=int, default=0, help='if only use linear or nearest only, options:[0(no),1(yes)]')
     
@@ -184,8 +189,10 @@ if __name__ == '__main__':
                 Exp = Exp_Long_Term_Forecast_Imp_J_Lambda_Stu
             elif args.limited_lambda_mode == 1:
                 Exp = Exp_Long_Term_Forecast_Imp_J_Lambda_Stu_clamp
-            elif args.limited_lambda_mode == 2:
+            elif (args.limited_lambda_mode == 2) and (args.without_head_tail == 0):
                 Exp = Exp_Long_Term_Forecast_Imp_J_Lambda_Stu_ReLu
+            elif (args.limited_lambda_mode == 2) and (args.without_head_tail == 1):
+                Exp = Exp_ReLu_Without_Head_Tail_Lambda_Stu
         else:
             if args.linear_nearest_only == 0:
                 Exp = Exp_Long_Term_Forecast_Imp_R

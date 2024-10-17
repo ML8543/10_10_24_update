@@ -10,6 +10,7 @@ import time
 import copy
 import warnings
 import numpy as np
+import torch.nn.functional as F
 from utils.dtw_metric import dtw,accelerated_dtw
 from utils.augmentation import run_augmentation,run_augmentation_single
 
@@ -29,13 +30,15 @@ class joint_loss(nn.Module):
         return total_loss, imp_loss, ds_loss
 
 # 联合训练
-class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
+class Exp_ReLu_Without_Head_Tail_Lambda_Stu(Exp_Basic):
     def __init__(self, args):
-        super(Exp_Long_Term_Forecast_Imp_J_Lambda_Stu, self).__init__(args)
+        super(Exp_ReLu_Without_Head_Tail_Lambda_Stu, self).__init__(args)
         self.args = args
         self.imp_model = self._bulid_imputation_model()
         self.device = torch.device('cuda' if args.use_gpu else 'cpu')  # 修改1：定义设备
         self._lambda = self._build_lambda()
+        self.activate_fn = nn.ReLU()
+
 
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
@@ -46,7 +49,11 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
     def _bulid_imputation_model(self):
         imp_args = copy.deepcopy(self.args)
         imp_args.task_name = 'imputation'
-        print(vars(self.args))
+        imp_args.label_len = 0
+        imp_args.pred_len = 0
+        ###这一行是为PatchTSTS专门加的，但是好像别的模型也不用把这一行去掉，因为n_heads默认值就是8，
+        ###这里加上只是因为填补和预测的n_heads设置的值不一样
+        imp_args.n_heads = 8
         ###Crossformer的ETTh1,ETTm1,weather数据填补的下面三个参数和其他的填补模型不一样
         if (self.args.model == 'Crossformer' and self.args.data_path == 'weather.csv'):
             imp_args.d_model = 64
@@ -86,7 +93,7 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
         model_optim = optim.Adam([
         {'params': self.model.parameters()},
         {'params': self.imp_model.parameters(), 'lr': self.args.imp_lr},
-        {'params': [self._lambda], 'lr': 0.001}  # 添加这行来包含 _lambda
+        {'params': [self._lambda], 'lr': 0.0001}  # 添加这行来包含 _lambda
     ], lr=self.args.learning_rate)
         return model_optim
 
@@ -118,7 +125,7 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
                 inp = batch_x_raw.masked_fill(mask == 0, 0)
 
                 # 输入
-                batch_x_imp = self.imp_model(inp, batch_x_mark, None, None, mask)
+                batch_x_d_model, batch_x_imp, means, stdev = self.imp_model(inp, batch_x_mark, None, None, mask)
 
                 # 补回去被填充的部分
                 batch_x_imp = batch_x_raw*mask + batch_x_imp*(1-mask)
@@ -135,14 +142,46 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
                         if self.args.output_attention:
-                            outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)[0]
+                            #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)[0]
+                            outputs = self.model(
+                                batch_x_d_model,
+                                batch_x_mark,
+                                dec_inp,
+                                batch_y_mark,
+                                means=means,
+                                stdev=stdev
+                            )[0]
                         else:
-                            outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)
+                            #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)
+                            outputs = self.model(
+                                batch_x_d_model,
+                                batch_x_mark,
+                                dec_inp,
+                                batch_y_mark,
+                                means=means,
+                                stdev=stdev
+                            )
                 else:
                     if self.args.output_attention:
-                        outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)[0]
+                        #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)[0]
+                        outputs = self.model(
+                            batch_x_d_model,
+                            batch_x_mark,
+                            dec_inp,
+                            batch_y_mark,
+                            means=means,
+                            stdev=stdev
+                        )[0]
                     else:
-                        outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)
+                        #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)
+                        outputs = self.model(
+                            batch_x_d_model,
+                            batch_x_mark,
+                            dec_inp,
+                            batch_y_mark,
+                            means=means,
+                            stdev=stdev
+                        )
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y_raw = batch_y_raw[:, -self.args.pred_len:, f_dim:]
@@ -208,7 +247,19 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
                 inp = batch_x_raw.masked_fill(mask == 0, 0)
 
                 # 输入
-                batch_x_imp = self.imp_model(inp, batch_x_mark, None, None, mask)
+                batch_x_d_model, batch_x_imp, means, stdev = self.imp_model(inp, batch_x_mark, None, None, mask)
+                means_copy = means.clone()
+                stdev_copy = stdev.clone()
+                means_copy_1 = means.clone()
+                stdev_copy_1 = stdev.clone()
+
+                # 调试打印
+                print("Means:", means)
+                print("Stdev:", stdev)
+
+                # 如果 stdev 是 None，抛出异常或者处理
+                if stdev is None:
+                    raise ValueError("stdev is None. Check imp_model implementation.")
                 # 补回去被填充的部分
                 batch_x_imp = batch_x_raw*mask + batch_x_imp*(1-mask)
                 # 复制一个用于后续损失计算
@@ -222,23 +273,59 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
                         if self.args.output_attention:
-                            outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)[0]
+                            #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)[0]
+                            outputs = self.model(
+                                batch_x_d_model,
+                                batch_x_mark,
+                                dec_inp,
+                                batch_y_mark,
+                                means=means,
+                                stdev=stdev
+                            )[0]
                         else:
-                            outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)
-
+                            #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)
+                            outputs = self.model(
+                                batch_x_d_model,
+                                batch_x_mark,
+                                dec_inp,
+                                batch_y_mark,
+                                means=means,
+                                stdev=stdev
+                            )
                         f_dim = -1 if self.args.features == 'MS' else 0
                         outputs = outputs[:, -self.args.pred_len:, f_dim:]
                         batch_y_raw = batch_y_raw[:, -self.args.pred_len:, f_dim:]
+                        # 将lambda限制在大于0 
+                        self._lambda.data = self.activate_fn(self._lambda)
                         loss, imp_loss, ds_loss = criterion(x_imp[mask==0],batch_x_raw[mask==0],outputs, batch_y_raw)
                         train_loss.append(loss.item())
                 else:
                     if self.args.output_attention:
-                        outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)[0]
+                        #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means_copy, stdev_copy)[0]
+                        outputs = self.model(
+                            batch_x_d_model,
+                            batch_x_mark,
+                            dec_inp,
+                            batch_y_mark,
+                            means=means_copy,
+                            stdev=stdev_copy
+                        )[0]
                     else:
-                        outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)
+                        print(f"means_copy: {means_copy}, stdev_copy: {stdev_copy}")
+                        #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means_copy, stdev_copy)
+                        outputs = self.model(
+                            batch_x_d_model,
+                            batch_x_mark,
+                            dec_inp,
+                            batch_y_mark,
+                            means=means_copy,
+                            stdev=stdev_copy
+                        )
                     f_dim = -1 if self.args.features == 'MS' else 0
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y_raw = batch_y_raw[:, -self.args.pred_len:, f_dim:]
+                    # 将lambda限制在大于0 
+                    self._lambda.data = self.activate_fn(self._lambda)
                     loss, imp_loss, ds_loss = criterion(x_imp[mask==0],batch_x_raw[mask==0],outputs, batch_y_raw)
                     train_loss.append(loss.item())
 
@@ -315,7 +402,7 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
                 inp = batch_x_raw.masked_fill(mask == 0, 0)
 
                 # 输入
-                batch_x_imp = self.imp_model(inp, batch_x_mark, None, None, mask)
+                batch_x_d_model, batch_x_imp, means, stdev = self.imp_model(inp, batch_x_mark, None, None, mask)
 
                 # 补回去被填充的部分
                 batch_x_imp = batch_x_raw*mask + batch_x_imp*(1-mask)
@@ -332,14 +419,46 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
                         if self.args.output_attention:
-                            outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)[0]
+                            #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)[0]
+                            outputs = self.model(
+                                batch_x_d_model,
+                                batch_x_mark,
+                                dec_inp,
+                                batch_y_mark,
+                                means=means,
+                                stdev=stdev
+                            )[0]
                         else:
-                            outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)
+                            #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)
+                            outputs = self.model(
+                                batch_x_d_model,
+                                batch_x_mark,
+                                dec_inp,
+                                batch_y_mark,
+                                means=means,
+                                stdev=stdev
+                            )
                 else:
                     if self.args.output_attention:
-                        outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)[0]
+                        #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)[0]
+                        outputs = self.model(
+                            batch_x_d_model,
+                            batch_x_mark,
+                            dec_inp,
+                            batch_y_mark,
+                            means=means,
+                            stdev=stdev
+                        )[0]
                     else:
-                        outputs = self.model(batch_x_imp, batch_x_mark, dec_inp, batch_y_mark)
+                        #outputs = self.model(batch_x_d_model, batch_x_mark, dec_inp, batch_y_mark, means, stdev)
+                        outputs = self.model(
+                            batch_x_d_model,
+                            batch_x_mark,
+                            dec_inp,
+                            batch_y_mark,
+                            means=means,
+                            stdev=stdev
+                        )
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, :]
                 batch_y_raw = batch_y_raw[:, -self.args.pred_len:, :].to(self.device)
@@ -368,16 +487,16 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
 
                 preds.append(pred)
                 trues.append(true)
-                if i % 20 == 0:
-                    raw = batch_x_raw.numpy()
-                    input = x_imp.numpy()
-                    if test_data.scale and self.args.inverse:
-                        shape = input.shape
-                        raw = test_data.inverse_transform(raw.squeeze(0)).reshape(shape)
-                        input = test_data.inverse_transform(input.squeeze(0)).reshape(shape)
-                    gt = np.concatenate((raw[0, :, -1], true[0, :, -1]), axis=0)
-                    pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
-                    visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
+                #if i % 20 == 0:
+                #    raw = batch_x_raw.numpy()
+                #    input = x_imp.numpy()
+                #    if test_data.scale and self.args.inverse:
+                #        shape = input.shape
+                #        raw = test_data.inverse_transform(raw.squeeze(0)).reshape(shape)
+                #        input = test_data.inverse_transform(input.squeeze(0)).reshape(shape)
+                #    gt = np.concatenate((raw[0, :, -1], true[0, :, -1]), axis=0)
+                #    pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
+                #    visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
 
         preds = np.array(preds)
         trues = np.array(trues)
@@ -409,14 +528,17 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
         else:
             dtw = -999
         
-        _lambda = self.args._lambda
+        ####************我根据对实验结果数据的观察认为这里应该修改，修改前_lambda赋值是初始化赋值的_lambda值
+        #_lambda = self.args._lambda
+        _lambda = self._lambda.item()
+        
         mae, mse, rmse, mape, mspe = metric(preds, trues)
         print('total_mse:{}, total_mae:{}, imp_mse:{}, imp_mae:{}, ds_mse:{}, ds_mae:{}'.format(_lambda*imp_mse+(1-_lambda)*mse,
                                                                                             _lambda*imp_mae+(1-_lambda)*mae,
                                                                                             imp_mse,
                                                                                             imp_mae,
                                                                                             mse, mae))
-        f = open("result_long_term_forecast_imp_j.txt", 'a')
+        f = open("result_iTransformer_without_head_tail.txt", 'a')
         f.write(setting + "  \n")
 
         f.write('(initial lr:{}, initial imp lr: {} lambda:{}({}), lradj:{})\n'.format(self.args.learning_rate, 
@@ -434,10 +556,10 @@ class Exp_Long_Term_Forecast_Imp_J_Lambda_Stu(Exp_Basic):
         f.write('\n')
         f.close()
 
-        np.save(folder_path + 'total_metrics.npy', np.array([ _lambda*imp_mae+(1-_lambda)*mae,
-                                                              _lambda*imp_mse+(1-_lambda)*mse, 
-                                                              ]))
-        np.save(folder_path + 'pred.npy', preds)
-        np.save(folder_path + 'true.npy', trues)
+        #np.save(folder_path + 'total_metrics.npy', np.array([ _lambda*imp_mae+(1-_lambda)*mae,
+        #                                                      _lambda*imp_mse+(1-_lambda)*mse, 
+        #                                                      ]))
+        #np.save(folder_path + 'pred.npy', preds)
+        #np.save(folder_path + 'true.npy', trues)
 
         return
