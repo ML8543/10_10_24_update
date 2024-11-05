@@ -34,6 +34,7 @@ if __name__ == '__main__':
 
     #使用“掐头去尾”的模型来做联合训练，掐去预测模型的线性映射嵌入头，去掉填补模型的线性映射尾
     parser.add_argument('--without_head_tail', type=int, default=0, help='if we use imp_model without tail and ds_model without head, options:[0(no),1(yes)]')
+    parser.add_argument('--d_model_imp', type=int, default=128, help='d_model of imputation model')
 
     #比较线性插值、最近邻插值和复现好的填补模型的填补效果
     parser.add_argument('--linear_nearest_only', type=int, default=0, help='if only use linear or nearest only, options:[0(no),1(yes)]')

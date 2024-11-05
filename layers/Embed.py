@@ -3,8 +3,21 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.utils import weight_norm
 import math
+"""
+加了一个类:PatchEmbedding_mask,针对使用PatchEmbedding模块来做时序嵌入的模型的
+mask掩蔽张量来做分块(patching)和嵌入(Embedding)。
+PatchEmbedding_mask:
+输入:[B,D,L]
+输出:[B*D,patch_num,d_model]
+:param: d_model:模型隐藏层维度。
+:param: patch_len:每个分块(patch)长度。
+:param: stride:做分块操作时的步长。
+:param: padding:在输入序列的末尾(右端)添加的填充长度。
+:param: dropout:每次前向传播过程中，每个神经元被丢弃的概率。
 
+PatchEmbedding_mask类与PatchEmbedding类的区别在于PatchEmbedding_mask类没有加上位置嵌入。
 
+"""
 class PositionalEmbedding(nn.Module):
     def __init__(self, d_model, max_len=5000):
         super(PositionalEmbedding, self).__init__()
@@ -187,4 +200,31 @@ class PatchEmbedding(nn.Module):
         x = torch.reshape(x, (x.shape[0] * x.shape[1], x.shape[2], x.shape[3]))
         # Input encoding
         x = self.value_embedding(x) + self.position_embedding(x)
+        return self.dropout(x), n_vars
+
+class PatchEmbedding_mask(nn.Module):
+    def __init__(self, d_model, patch_len, stride, padding, dropout):
+        super(PatchEmbedding_mask, self).__init__()
+        # Patching
+        self.patch_len = patch_len
+        self.stride = stride
+        self.padding_patch_layer = nn.ReplicationPad1d((0, padding))
+
+        # Backbone, Input encoding: projection of feature vectors onto a d-dim vector space
+        self.value_embedding = nn.Linear(patch_len, d_model, bias=False)
+
+        # Positional embedding
+        self.position_embedding = PositionalEmbedding(d_model)
+
+        # Residual dropout
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        # do patching
+        n_vars = x.shape[1]
+        x = self.padding_patch_layer(x)
+        x = x.unfold(dimension=-1, size=self.patch_len, step=self.stride)
+        x = torch.reshape(x, (x.shape[0] * x.shape[1], x.shape[2], x.shape[3]))
+        # Input encoding
+        x = self.value_embedding(x)
         return self.dropout(x), n_vars

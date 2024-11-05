@@ -1,4 +1,54 @@
+#########iTransformer_ETTm1_test###################
 long_term_forecast_iTransformer_ETTm1_0.125_96_96_J_lambda_stu_ReLu_without_head_tail_iTransformer_without_head_tail_ETTm1_ftM_sl96_ll48_pl96_dm128_nh8_el2_dl1_df128_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
 (initial lr:0.0001, initial imp lr: 0.001 lambda:0.765272319316864(Trainable), lradj:type1)
 total_mse:0.1137910637352773, total_mae:0.19427398245128003, imp_mse:0.045333094808797374, imp_mae:0.1393928913196095, ds_mse:0.33698156476020813, ds_mae:0.373200386762619
+
+long_term_forecast_iTransformer_ETTm1_0.125_96_96_J_lambda_stu_ReLu_without_head_tail_iTransformer_without_head_tail_ETTm1_ftM_sl96_ll48_pl96_dm128_nh8_el2_dl1_df128_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.765272319316864(Trainable), lradj:type1)
+total_mse:0.1137910637352773, total_mae:0.19427398245128003, imp_mse:0.045333094808797374, imp_mae:0.1393928913196095, ds_mse:0.33698156476020813, ds_mae:0.373200386762619
+
+long_term_forecast_iTransformer_weather_0.125_96_96_J_lambda_stu_without_head_tail_iTransformer_without_head_tail_custom_ftM_sl96_ll48_pl96_dm512_nh8_el3_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.6542413234710693(Trainable), lradj:type1)
+total_mse:0.08242904829435727, total_mae:0.11009032252843809, imp_mse:0.031423738072026364, imp_mae:0.051968382540061794, ds_mse:0.1789408177137375, ds_mae:0.22006811201572418
+
+######这是加了mask来融合但是没有加ReLu来保证mask的所有元素大于等于0
+long_term_forecast_iTransformer_ETTm1_0.125_96_96_J_lambda_stu_ReLu_without_head_tail_iTransformer_without_head_tail_ETTm1_ftM_sl96_ll48_pl96_dm128_nh8_el2_dl1_df128_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.7602974772453308(Trainable), lradj:type1)
+total_mse:0.12295088003785119, total_mae:0.2065662503404488, imp_mse:0.052242668492312565, imp_mae:0.15136107847261496, ds_mse:0.3472258448600769, ds_mae:0.3816680908203125
+
+
+
+long_term_forecast_iTransformer_weather_0.125_96_96_J_lambda_stu_without_head_tail_iTransformer_without_head_tail_custom_ftM_sl96_ll48_pl96_dm512_nh8_el3_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.6127524375915527(Trainable), lradj:type1)
+total_mse:0.08596974194888259, total_mae:0.11870721115149155, imp_mse:0.034685150137388265, imp_mae:0.05974274847450797, ds_mse:0.16711875796318054, ds_mae:0.2120082974433899
+
+######这是加了mask来融合并且加了ReLu来保证mask的所有元素大于等于0
+
+long_term_forecast_iTransformer_ETTm1_0.125_96_96_J_lambda_stu_ReLu_without_head_tail_iTransformer_without_head_tail_ETTm1_ftM_sl96_ll48_pl96_dm128_nh8_el2_dl1_df128_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.7647141218185425(Trainable), lradj:type1)
+total_mse:0.11485416909611293, total_mae:0.19557663069240722, imp_mse:0.045760615762709234, imp_mae:0.14056074119979092, ds_mse:0.33941850066185, ds_mae:0.3743864595890045
+
+long_term_forecast_iTransformer_weather_0.125_96_96_J_lambda_stu_without_head_tail_iTransformer_without_head_tail_custom_ftM_sl96_ll48_pl96_dm512_nh8_el3_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.6382328867912292(Trainable), lradj:type1)
+total_mse:0.08474422101165657, total_mae:0.11254973465310884, imp_mse:0.03127197241996261, imp_mae:0.05173639622316953, ds_mse:0.17908045649528503, ds_mae:0.21983718872070312
+
+long_term_forecast_iTransformer_ECL_0.125_96_96_J_lambda_stu_ReLu_without_head_tail_iTransformer_without_head_tail_custom_ftM_sl96_ll48_pl96_dm512_nh8_el3_dl1_df512_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0005, initial imp lr: 0.001 lambda:0.7786094546318054(Trainable), lradj:type1)
+total_mse:0.08739692031306551, total_mae:0.1970230071394977, imp_mse:0.06762596314645702, imp_mae:0.18109798477673383, ds_mse:0.15692949295043945, ds_mae:0.25302979350090027
+
+long_term_forecast_patchTST_ETTm1_96_96_0.125_J_lambda_stu_ReLu_without_head_tail_PatchTST_without_head_tail_ETTm1_ftM_sl96_ll48_pl96_dm512_nh2_el1_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.775404691696167(Trainable), lradj:type1)
+total_mse:0.10817421588676157, total_mae:0.18909125788974307, imp_mse:0.04605422834983142, imp_mae:0.13903413264273928, ds_mse:0.3226405382156372, ds_mae:0.3619111180305481
+
+long_term_forecast_patchTST_ETTh1_96_96_0.125_J_lambda_stu_ReLu_without_head_tail_PatchTST_without_head_tail_ETTh1_ftM_sl96_ll48_pl96_dm512_nh2_el1_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.5710598230361938(Trainable), lradj:type1)
+total_mse:0.22307036387510154, total_mae:0.29440508595250414, imp_mse:0.10185225320787265, imp_mae:0.21112979229154258, ds_mse:0.38445135951042175, ds_mae:0.4052717685699463
+
+long_term_forecast_patchTST_weather_96_96_0.125_J_lambda_stu_ReLu_without_head_tail_PatchTST_without_head_tail_custom_ftM_sl96_ll48_pl96_dm512_nh4_el2_dl1_df2048_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.6626293659210205(Trainable), lradj:type1)
+total_mse:0.08007062823336547, total_mae:0.10766973498869357, imp_mse:0.029219020845117103, imp_mae:0.049978215407374446, ds_mse:0.17994822561740875, ds_mae:0.22098159790039062
+
+long_term_forecast_PatchTST_ECL_96_96_0.125_stu_lambda_J_ReLu_without_head_tail_PatchTST_without_head_tail_custom_ftM_sl96_ll48_pl96_dm128_nh16_el3_dl1_df256_expand2_dc4_fc3_ebtimeF_dtTrue_Exp_2_0  
+(initial lr:0.0001, initial imp lr: 0.001 lambda:0.7868862152099609(Trainable), lradj:type1)
+total_mse:0.08644430926551935, total_mae:0.18997761443984382, imp_mse:0.0570380167908365, imp_mae:0.16317375823392632, ds_mse:0.19502201676368713, ds_mae:0.288946270942688
 

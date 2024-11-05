@@ -34,8 +34,8 @@ class Exp_ReLu_Without_Head_Tail_Lambda_Stu(Exp_Basic):
     def __init__(self, args):
         super(Exp_ReLu_Without_Head_Tail_Lambda_Stu, self).__init__(args)
         self.args = args
-        self.imp_model = self._bulid_imputation_model()
         self.device = torch.device('cuda' if args.use_gpu else 'cpu')  # 修改1：定义设备
+        self.imp_model = self._bulid_imputation_model()
         self._lambda = self._build_lambda()
         self.activate_fn = nn.ReLU()
 
@@ -44,6 +44,7 @@ class Exp_ReLu_Without_Head_Tail_Lambda_Stu(Exp_Basic):
         model = self.model_dict[self.args.model].Model(self.args).float()
         if self.args.use_multi_gpu and self.args.use_gpu:
             model = nn.DataParallel(model, device_ids=self.args.device_ids)
+        model.to(self.device)
         return model
 
     def _bulid_imputation_model(self):
@@ -254,8 +255,8 @@ class Exp_ReLu_Without_Head_Tail_Lambda_Stu(Exp_Basic):
                 stdev_copy_1 = stdev.clone()
 
                 # 调试打印
-                print("Means:", means)
-                print("Stdev:", stdev)
+                #print("Means:", means)
+                #print("Stdev:", stdev)
 
                 # 如果 stdev 是 None，抛出异常或者处理
                 if stdev is None:
@@ -270,6 +271,8 @@ class Exp_ReLu_Without_Head_Tail_Lambda_Stu(Exp_Basic):
                 dec_inp = torch.zeros_like(batch_y_raw[:, -self.args.pred_len:, :]).float()
                 dec_inp = torch.cat([batch_x_imp[:, -self.args.label_len:, :], dec_inp], dim=1).float().to(self.device)
                 # encoder - decoder
+                
+                
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
                         if self.args.output_attention:

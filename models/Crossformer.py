@@ -25,10 +25,16 @@ class Model(nn.Module):
         self.task_name = configs.task_name
 
         # The padding operation to handle invisible sgemnet length
+        #首先计算输入序列的填充长度,ceil表示向上取整
         self.pad_in_len = ceil(1.0 * configs.seq_len / self.seg_len) * self.seg_len
+        #计算输出序列的填充长度
         self.pad_out_len = ceil(1.0 * configs.pred_len / self.seg_len) * self.seg_len
+        #这行代码计算输入序列中包含的段数。它将填充后的输入序列长度（self.pad_in_len）除以段长度（self.seg_len），然后向下取整
+        #在Python中，当使用整型除法时，结果会自动向下取整。//是整型除法
         self.in_seg_num = self.pad_in_len // self.seg_len
+        #这行代码计算输出序列中包含的段数。它首先将输入序列中的段数（self.in_seg_num）除以窗口大小（self.win_size）的(configs.e_layers - 1)次方，然后向上取整
         self.out_seg_num = ceil(self.in_seg_num / (self.win_size ** (configs.e_layers - 1)))
+        #这行代码计算每个头的特征数量。它将模型中每个头的特征数量（configs.d_model）乘以输出序列中的段数（self.out_seg_num）
         self.head_nf = configs.d_model * self.out_seg_num
 
         # Embedding

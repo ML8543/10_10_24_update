@@ -2,7 +2,7 @@ import os
 import torch
 from models import Autoformer, Transformer, TimesNet, Nonstationary_Transformer, DLinear, FEDformer, \
     Informer, LightTS, Reformer, ETSformer, Pyraformer, PatchTST, MICN, Crossformer, FiLM, iTransformer, \
-    Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, Mamba, TemporalFusionTransformer ,iTransformer_without_head_tail
+    Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, Mamba, TemporalFusionTransformer ,iTransformer_without_head_tail ,PatchTST_without_head_tail
 
 
 class Exp_Basic(object):
@@ -10,6 +10,7 @@ class Exp_Basic(object):
         self.args = args
         self.model_dict = {
             'iTransformer_without_head_tail': iTransformer_without_head_tail,
+            'PatchTST_without_head_tail':PatchTST_without_head_tail,
             'TimesNet': TimesNet,
             'Autoformer': Autoformer,
             'Transformer': Transformer,
