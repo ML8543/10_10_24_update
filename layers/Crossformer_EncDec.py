@@ -18,11 +18,16 @@ class SegMerging(nn.Module):
         if pad_num != 0:
             pad_num = self.win_size - pad_num
             x = torch.cat((x, x[:, :, -pad_num:, :]), dim=-2)
+        #breakpoint()
+        #print(x.shape)
 
         seg_to_merge = []
         for i in range(self.win_size):
             seg_to_merge.append(x[:, :, i::self.win_size, :])
+        #print(f"Shape of first element: {seg_to_merge[0].shape}, Shape of second element: {seg_to_merge[1].shape}")
+        
         x = torch.cat(seg_to_merge, -1)
+        #print(x.shape)
 
         x = self.norm(x)
         x = self.linear_trans(x)
@@ -51,10 +56,12 @@ class scale_block(nn.Module):
 
         if self.merge_layer is not None:
             x = self.merge_layer(x)
+        #breakpoint()
+        #print(type(x))
 
         for layer in self.encode_layers:
             x = layer(x)
-
+        #print(type(x))
         return x, None
 
 

@@ -92,8 +92,12 @@ class Model(nn.Module):
         x_enc += self.enc_pos_embedding
         x_enc = self.pre_norm(x_enc)
         enc_out, attns = self.encoder(x_enc)
+        print(f"Shape of first element: {enc_out[0].shape}, Shape of second element: {enc_out[1].shape}")
+        print(len(enc_out))
 
+        print(self.dec_pos_embedding.shape)
         dec_in = repeat(self.dec_pos_embedding, 'b ts_d l d -> (repeat b) ts_d l d', repeat=x_enc.shape[0])
+        print(dec_in.shape)
         dec_out = self.decoder(dec_in, enc_out)
         return dec_out
 
